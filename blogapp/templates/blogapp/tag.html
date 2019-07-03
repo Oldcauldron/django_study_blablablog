@@ -1,0 +1,19 @@
+
+{% extends 'blogapp/base.html' %}
+
+
+{% block content %}
+
+<p>{{hashtag}}</p>
+
+<ul>
+{% for post in tag_page %}
+    <li><a href="{% url 'blogapp:post' post.id %}">{{post|linebreaks}}</a></li>
+{% empty %}
+    <li>Nothing yet</li>
+{% endfor %}
+</ul>
+
+{% endblock content %}
+
+

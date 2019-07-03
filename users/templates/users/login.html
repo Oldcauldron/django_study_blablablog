@@ -1,0 +1,30 @@
+
+{% extends 'blogapp/base.html' %}
+
+{% block content %}
+
+{% if form.errors %}
+    <p>Login or password incorrect +!</p>
+{% endif %}
+
+<form action="{% url 'users:login'%}" method='post'>
+    {% csrf_token %}
+    {{form.as_p}}
+    <button name="submit">O</button>
+    <input type="hidden" name="next" value="{% url 'blogapp:index' %}" />
+</form>
+
+{% endblock content %}
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,17 @@
+
+{% extends 'blogapp/base.html' %}
+
+
+{% block content %}
+
+<form action="{% url 'blogapp:new_tag' %}" method="post">
+    {{form.as_p}}
+    {% csrf_token %}
+    <button name='submit'>add new tag</button>
+</form>
+
+
+{% endblock content %}
+
+
+

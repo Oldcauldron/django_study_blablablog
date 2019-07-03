@@ -1,0 +1,15 @@
+
+<a href="{% url 'blogapp:index' %}">Index</a> - 
+<a href="{% url 'blogapp:tags' %}">Hashtags</a> - 
+<a href="{% url 'blogapp:themes' %}">Themes</a> - 
+{% if user.is_authenticated %}
+	Hello, {{user.username}} - 
+	<a href="{% url 'users:logout' %}">|LogOut|</a>
+{% else %}
+	<a href="{% url 'users:login' %}">|LogIn|</a> - 
+	<a href="{% url 'users:register' %}">|register|</a>
+{% endif %}
+
+{% block content %}{% endblock content %}
+
+

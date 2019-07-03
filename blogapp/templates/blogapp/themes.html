@@ -1,0 +1,37 @@
+
+{% extends 'blogapp/base.html' %}
+
+
+{% block content %}
+
+<ul>
+{% for post in themes %}
+
+    <li>
+        {% if post.owner_post == req_user %} 
+        <a href="{% url 'blogapp:edit_post' post.id %}">
+            (edit post)
+        </a> -- 
+        {% endif %}
+        <a href="{% url 'blogapp:post' post.id %}">
+            {{post}}
+        </a>
+        
+
+    </li>
+
+{% empty %}
+    <p>Not yet</p>
+{% endfor %}
+</ul>
+
+<p>
+    <a href="{% url 'blogapp:new_theme' %}"><button>create new theme</button></a>
+</p>
+
+{% endblock content %}
+
+
+
+
+

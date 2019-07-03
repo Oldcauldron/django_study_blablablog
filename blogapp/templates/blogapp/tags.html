@@ -1,0 +1,26 @@
+
+{% extends 'blogapp/base.html' %}
+
+
+{% block content %}
+
+<ul>
+{% for tag in tags %}
+    <li><p>
+    {% if tag.owner_tag == req_user %}
+    <a href="{% url 'blogapp:edit_tag' tag.id %}">(edit tag)</a> -- 
+    {% endif %}
+    <a href="{% url 'blogapp:tag' tag.id %}">{{tag}}</a></p></li>
+    
+{% empty %}
+    <li><p>Nothing yet</p></li>
+{% endfor %}
+</ul>
+
+<p><a href="{% url 'blogapp:new_tag' %}">
+    <button>create  new hashtag</button>
+</a></p>
+
+{% endblock content %}
+
+

@@ -1,0 +1,91 @@
+
+{% load bootstrap3 %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Bla-bla-blog</title>
+    {% bootstrap_css %}
+    {% bootstrap_javascript %}
+</head>
+
+
+
+<body>
+    <nav class="navbar navbar-default navbar-static-top">
+        <div class="container">
+
+            <div class="navbar-header">
+                <a href="{% url 'blogapp:index' %}" class="navbar-brand">
+                    Bla-bla-blog
+                </a>
+                <button type="button" class="navbar-toggle collapsed"
+                    data-toggle='collapse'
+                    data-target='#navbar123'
+                    aria-expanded='false'
+                    aria-controls='navbar'
+                    >
+                   ||| 
+                </button>
+                <!--aria-controls
+                    указывает элемент (элементы), чьим содержанием или поведением управляет текущий элемент;-->
+                <!--data-toggle="collapse"
+                    тип скрипта;-->
+                <!--aria-expanded
+                    показывает, развернут или свернут текущий элемент;-->
+                <!--data-target
+                    Атрибут data-target должен содержать селектор CSS, который указывает на элемент HTML, который будет изменен.;-->
+            </div>
+
+            <div id='navbar123' class="navbar-collapse collapse">
+                <ul class="nav navbar-nav">
+                <li><a href="{% url 'blogapp:index' %}">Index</a></li>
+                <li><a href="{% url 'blogapp:tags' %}">Hashtags</a></li>
+                <li><a href="{% url 'blogapp:themes' %}">Themes</a></li>
+                </ul> 
+                <ul class="nav navbar-nav navbar-right">
+                {% if user.is_authenticated %}
+                    <li><a>Hello, {{user.username}}</a></li>
+                    <li><a href="{% url 'users:logout' %}">|LogOut|</a></li>
+                {% else %}
+                    <li><a href="{% url 'users:login' %}">|LogIn|</a></li>
+                    <li><a href="{% url 'users:register' %}">|register|</a></li>
+                {% endif %}
+                </ul>
+            </div>
+
+
+
+
+
+
+
+
+
+
+        </div>
+    </nav>
+{% block content %}{% endblock content %}
+
+</body>
+</html>
+
+<!--
+<a href="{% url 'blogapp:index' %}">Index</a> - 
+<a href="{% url 'blogapp:tags' %}">Hashtags</a> - 
+<a href="{% url 'blogapp:themes' %}">Themes</a> - 
+{% if user.is_authenticated %}
+    Hello, {{user.username}} - 
+    <a href="{% url 'users:logout' %}">|LogOut|</a>
+{% else %}
+    <a href="{% url 'users:login' %}">|LogIn|</a> - 
+    <a href="{% url 'users:register' %}">|register|</a>
+{% endif %}
+
+
+-->
+
+

@@ -1,0 +1,15 @@
+
+{% extends 'blogapp/base.html' %}
+
+{% block content %}
+
+<p>{{post.razdel}}</p>
+<p>{{post.title}}</p>
+<p>{{post.text|linebreaks}}</p>
+<p>{{post.date_added}}</p>
+<p>{{post.razdel}}</p>
+{% if post.owner_post == req_user %}
+<p><a href="{% url 'blogapp:edit_post' post.id %}">
+    <button name='edit'>edit</button></a></p>
+{% endif %}
+{% endblock content %}
