@@ -13,6 +13,10 @@ urlpatterns = [
     re_path(r'^edit_tag/(?P<tag_id>\d+)/$', views.edit_tag, name='edit_tag'),
     re_path(r'^edit_post/(?P<post_id>\d+)/$',
             views.edit_post, name='edit_post'),
+    re_path(r'^delete_post/(?P<post_id>\d+)/$',
+            views.delete_post, name='delete_post'),
+    re_path(r'^delete_tag/(?P<tag_id>\d+)/$',
+            views.delete_tag, name='delete_tag'),
 ]
 
 

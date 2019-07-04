@@ -134,9 +134,20 @@ def edit_post(request, post_id):
     return render(request, 'blogapp/edit_post.html', context)
 
 
+@login_required
+def delete_post(request, post_id):
+    post = Blogpost.objects.get(id=post_id)
+    check_owner(request, post.owner_post)
+    post.delete()
+    return HttpResponseRedirect(reverse('blogapp:themes'))
 
 
-
+@login_required
+def delete_tag(request, tag_id):
+    tag = Hashtag.objects.get(id=tag_id)
+    check_owner(request, tag.owner_tag)
+    tag.delete()
+    return HttpResponseRedirect(reverse('blogapp:tags'))
 
 
 

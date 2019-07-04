@@ -1,33 +1,40 @@
 
 {% extends 'blogapp/base.html' %}
+{% load bootstrap3 %}
 
+{% block header %}
+    <h1>Your themes</h1>
+{% endblock header %}
 
 {% block content %}
 
 <ul>
-{% for post in themes %}
+    {% for post in themes %}
 
-    <li>
-        {% if post.owner_post == req_user %} 
-        <a href="{% url 'blogapp:edit_post' post.id %}">
-            (edit post)
-        </a> -- 
-        {% endif %}
-        <a href="{% url 'blogapp:post' post.id %}">
-            {{post}}
-        </a>
-        
+        <li><h4>
+            {% if post.owner_post == req_user %} 
+                <a href="{% url 'blogapp:edit_post' post.id %}">
+                    (edit post)
+                </a> -- 
+            {% endif %}
+                <a href="{% url 'blogapp:post' post.id %}">
+                    {{post}}
+                </a>
+            <small>(author: {{ post.owner_post }})</small>
+        </h4></li>
 
-    </li>
-
-{% empty %}
-    <p>Not yet</p>
-{% endfor %}
+    {% empty %}
+        <p>Not yet</p>
+    {% endfor %}
 </ul>
 
-<p>
-    <a href="{% url 'blogapp:new_theme' %}"><button>create new theme</button></a>
-</p>
+{% buttons  %}
+    <a href="{% url 'blogapp:new_theme' %}">
+        <button name="submit" class="btn btn-primary">
+            create new theme
+        </button>
+    </a>
+{% endbuttons %}
 
 {% endblock content %}
 

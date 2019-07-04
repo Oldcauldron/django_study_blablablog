@@ -1,13 +1,21 @@
 
 {% extends 'blogapp/base.html' %}
+{% load bootstrap3 %}
+
+{% block header %} Edit your post {% endblock header %}
+
 
 {% block content %}
 
-<form action="{% url 'blogapp:edit_post' post.id %}" method="post">
+<form action="{% url 'blogapp:edit_post' post.id %}" method="post" class="form">
 	{% csrf_token %}
-	{{form.as_p}}
-	<button name='submit'>save changes</button>
+	{% bootstrap_form form %}
+    {% buttons %}
+	   <button name='submit' class="btn btn-primary">save changes</button>
+    {% endbuttons %}
 </form>
+    <a href="{% url 'blogapp:delete_post' post.id %}">Delete post</a>
+
 
 
 {% endblock content %}

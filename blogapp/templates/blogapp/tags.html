@@ -1,25 +1,32 @@
 
 {% extends 'blogapp/base.html' %}
+{% load bootstrap3 %}
 
+{% block header %} <h1>All of hashtags</h1> {% endblock header %}
 
 {% block content %}
 
 <ul>
 {% for tag in tags %}
-    <li><p>
+    <li><h4>
     {% if tag.owner_tag == req_user %}
-    <a href="{% url 'blogapp:edit_tag' tag.id %}">(edit tag)</a> -- 
+        <a href="{% url 'blogapp:edit_tag' tag.id %}">(edit tag)</a> -- 
     {% endif %}
-    <a href="{% url 'blogapp:tag' tag.id %}">{{tag}}</a></p></li>
-    
+        <a href="{% url 'blogapp:tag' tag.id %}">{{tag}}</a>
+    <small>(master: {{tag.owner_tag}})</small>
+    </h4></li>
 {% empty %}
     <li><p>Nothing yet</p></li>
 {% endfor %}
 </ul>
 
-<p><a href="{% url 'blogapp:new_tag' %}">
-    <button>create  new hashtag</button>
-</a></p>
+{% buttons %}
+<a href="{% url 'blogapp:new_tag' %}">
+    <button name="submit" class="btn btn-primary">
+        create  new hashtag
+    </button>
+</a>
+{% endbuttons %}
 
 {% endblock content %}
 

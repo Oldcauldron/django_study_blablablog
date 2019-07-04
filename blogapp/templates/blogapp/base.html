@@ -26,7 +26,7 @@
                     data-toggle='collapse'
                     data-target='#navbar123'
                     aria-expanded='false'
-                    aria-controls='navbar'
+                    aria-controls='navbar123'
                     >
                    ||| 
                 </button>
@@ -42,7 +42,6 @@
 
             <div id='navbar123' class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
-                <li><a href="{% url 'blogapp:index' %}">Index</a></li>
                 <li><a href="{% url 'blogapp:tags' %}">Hashtags</a></li>
                 <li><a href="{% url 'blogapp:themes' %}">Themes</a></li>
                 </ul> 
@@ -57,18 +56,18 @@
                 </ul>
             </div>
 
-
-
-
-
-
-
-
-
-
         </div>
     </nav>
-{% block content %}{% endblock content %}
+    <div class="container">
+        <div class="page-header">
+            {% block header %} {% endblock header %}
+        </div>
+        <div>
+            {% block content %}{% endblock content %}            
+        </div>
+    </div>
+
+
 
 </body>
 </html>
