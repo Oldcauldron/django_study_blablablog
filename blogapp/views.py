@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render, get_object_or_404
 from django.urls import reverse
 from django.http import HttpResponseRedirect, Http404
 from django.contrib.auth.decorators import login_required
@@ -35,7 +35,7 @@ def tag(request, tag_id):
 
 
 def post(request, post_id):
-    post = Blogpost.objects.get(id=post_id)
+    post = get_object_or_404(Blogpost, id=post_id)
     req_user = request.user
     context = {'post': post, 'req_user': req_user}
     return render(request, 'blogapp/post.html', context)

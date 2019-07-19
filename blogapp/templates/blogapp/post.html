@@ -1,15 +1,17 @@
 
 {% extends 'blogapp/base.html' %}
+{% load bootstrap3 %}
+
+{% block header %} <h1>{{post.title}}</h1> {% endblock header %}
 
 {% block content %}
 
-<p>{{post.razdel}}</p>
-<p>{{post.title}}</p>
 <p>{{post.text|linebreaks}}</p>
 <p>{{post.date_added}}</p>
-<p>{{post.razdel}}</p>
 {% if post.owner_post == req_user %}
 <p><a href="{% url 'blogapp:edit_post' post.id %}">
-    <button name='edit'>edit</button></a></p>
+	{% buttons %}
+    <button name='edit' class="btn btn-primary">edit</button></a></p>
+    {% endbuttons %}
 {% endif %}
 {% endblock content %}
